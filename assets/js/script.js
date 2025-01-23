@@ -21,5 +21,26 @@ $(document).ready(function() {
     });
 
     /* _________________ end home page _________________ */
+
+    /* _________________ start contact us page _________________ */
+    $(document).ready(function () {
+        $("#contactForm").on("submit", function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            $.ajax({
+                url: "send-email.php", // PHP file to handle the email
+                type: "POST",
+                data: $(this).serialize(), // Serialize form data
+                success: function (response) {
+                    alert("Your message has been sent successfully!");
+                    $("#contactForm")[0].reset(); // Reset the form
+                },
+                error: function () {
+                    alert("There was an error sending your message. Please try again.");
+                }
+            });
+        });
+    });
+    /* _________________ end contact us page _________________ */
     
 });
